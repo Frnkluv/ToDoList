@@ -12,9 +12,12 @@ namespace WpfApp1.Models
     {
         private bool _isDone;
         private string _text;
+        private string _note;
+        private string _deadline;
 
+        //public DateTime CreationDate { get; set; } = DateTime.Parse(DateTime.Now.ToString("d"));
+        public DateTime CreationDate { get; set; } = DateTime.Now.Date;
 
-        public DateTime CreationDate { get; set; } = DateTime.Now;
         public bool IsDone 
         {
             get { return _isDone; }
@@ -41,11 +44,36 @@ namespace WpfApp1.Models
             } 
         }
 
+        public string Note
+        {
+            get { return _note; }
+            set
+            {
+                if (_note == value)
+                    return;
+
+                _note = value;
+                OnPropertyChanged("Note");
+            }
+        }
+
+        public string Deadline
+        {
+            get { return _deadline; }
+            set
+            {
+                if (_deadline == value)
+                    return;
+
+                _deadline = value;
+                OnPropertyChanged("Deadline");
+            }
+        }
+
 
         // уведомляет билдинг лист подписывается на это событие, и когда происходит изменение уже в сущ-ем
         // списке - уведомляет об этом, именно когда что-то внутри модели изменилось
         public event PropertyChangedEventHandler PropertyChanged;
-
 
         protected virtual void OnPropertyChanged(string propertyName ="")
         {

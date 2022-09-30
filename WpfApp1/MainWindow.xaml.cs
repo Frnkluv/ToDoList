@@ -56,7 +56,9 @@ namespace WpfApp1
 
         private void _toDoDataList_ListChanged(object sender, ListChangedEventArgs e)
         {
-            if (e.ListChangedType == ListChangedType.ItemAdded || e.ListChangedType == ListChangedType.ItemChanged || e.ListChangedType == ListChangedType.ItemDeleted)
+            if (e.ListChangedType == ListChangedType.ItemAdded || 
+                e.ListChangedType == ListChangedType.ItemChanged || 
+                e.ListChangedType == ListChangedType.ItemDeleted)
             {
                 try
                 {

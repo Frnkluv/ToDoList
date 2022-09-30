@@ -6,12 +6,57 @@
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
         Title="To-do List" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid>
-        <DataGrid x:Name="dgToDoList" FontSize="16" FontWeight="Bold" Margin="10" AutoGenerateColumns="False">
+    <Grid Background="#FFEEEEEE">
+        <DataGrid x:Name="dgToDoList" FontSize="16" FontWeight="Bold" Margin="3" AutoGenerateColumns="False" BorderBrush="#FFF4ECDB" Background="#FFF4ECDB">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Path=CreationDate}" IsReadOnly="True" Header="CreationDate" Width="160"/>
                 <DataGridCheckBoxColumn Binding="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Header="Done" Width="50"/>
-                <DataGridTextColumn Binding="{Binding Path=Text}" IsReadOnly="False" Header="toDo" Width="*"/>
+                
+                <!--Что выполнить-->
+                <DataGridTextColumn Binding="{Binding Path=Text}" IsReadOnly="False" Header="To do" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                
+                <!--Дедлайн-->
+                <DataGridTextColumn Binding="{Binding Path=Deadline}" IsReadOnly="False" Header="Deadline" Width="Auto">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                
+                <!--Заметки-->
+                <DataGridTextColumn Binding="{Binding Path=Note}" IsReadOnly="False" Header="Note" Width="*">
+                    <DataGridTextColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridTextColumn.HeaderStyle>
+                    <DataGridTextColumn.ElementStyle>
+                        <Style>
+                            <Setter Property="TextBlock.TextWrapping" Value="Wrap" />
+                            <Setter Property="TextBlock.TextAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                
+                <!--<DataGridTextColumn Binding="{Binding Path=CreationDate}" IsReadOnly="True" Header="CreationDate" Width="160"/>-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

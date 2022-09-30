@@ -16,7 +16,7 @@ namespace WpfApp1
     /// </summary>
     public partial class App : Application
     {
-        // переопределяю метод, тк если не делать этого вывод даты и времени будет зависить от ОС
+        // переопределяю метод, тк если не делать этого, вывод даты и времени будет зависить от ОС
         protected override void OnStartup(StartupEventArgs e)
         {
             var cultureInfo = new CultureInfo("ru-RU");
