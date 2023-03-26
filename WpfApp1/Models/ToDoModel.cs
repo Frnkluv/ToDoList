@@ -20,6 +20,7 @@ namespace WpfApp1.Models
 
         public bool IsDone 
         {
+            // чтобы чекбокс понял об изменении - в DataGrid добавить UpdateSourceTrigger=PropertyChanged
             get { return _isDone; }
             set 
             {
@@ -71,14 +72,14 @@ namespace WpfApp1.Models
         }
 
 
-        // уведомляет билдинг лист подписывается на это событие, и когда происходит изменение уже в сущ-ем
-        // списке - уведомляет об этом, именно когда что-то внутри модели изменилось
+        // Уведомляет билдинг лист о подписке на это событие, и когда происходит изменение уже в сущ-ем
+        // списке - уведомляет об этом, именно когда что-то внутри модели изменилось.
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName ="")
         {
-            // this передает инфу об этой модели, которая вызвала это событие
-            // чтоб избежать null
+            // Обращение к ивенту.
+            // this передает инфу об этой модели, которая вызвала это событие - чтоб избежать null (когда никто не подписался на событие)
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }

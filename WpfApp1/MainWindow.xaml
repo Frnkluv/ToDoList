@@ -9,9 +9,18 @@
     <Grid Background="#FFEEEEEE">
         <DataGrid x:Name="dgToDoList" FontSize="16" FontWeight="Bold" Margin="3" AutoGenerateColumns="False" BorderBrush="#FFF4ECDB" Background="#FFF4ECDB">
             <DataGrid.Columns>
-                <DataGridCheckBoxColumn Binding="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Header="Done" Width="50"/>
+                <!--Чекбокс-->
+                <DataGridCheckBoxColumn Binding="{Binding Path=IsDone, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="False" Header="Done" Width="50">
+                    <DataGridCheckBoxColumn.HeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                        </Style>
+                    </DataGridCheckBoxColumn.HeaderStyle>
+                    <!-- Вставить кусок по аналогии с нижним блоком. -->
+                    
+                </DataGridCheckBoxColumn>
                 
-                <!--Что выполнить-->
+                <!--Что выполнить (to do)-->
                 <DataGridTextColumn Binding="{Binding Path=Text}" IsReadOnly="False" Header="To do" Width="*">
                     <DataGridTextColumn.HeaderStyle>
                         <Style TargetType="DataGridColumnHeader">

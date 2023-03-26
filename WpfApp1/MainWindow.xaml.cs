@@ -23,8 +23,13 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        // Environment.CurrentDirectory - расположение exe файла + после \\ сам json. В том же месте получается.
         private readonly string PATH = $"{Environment.CurrentDirectory}\\todoDataList.json";
+        
+        //контейнер в котором будут храниться данные:
         private BindingList<ToDoModel> _toDoDataList;
+
+        // подкл библ Json и созд класс для загрузки/сохранения с ЖД
         private FileIOServece _fileIOServece;
 
         public MainWindow()
@@ -36,26 +41,29 @@ namespace WpfApp1
         {
             _fileIOServece = new FileIOServece(PATH);
 
-
             try
             {
                 _toDoDataList = _fileIOServece.LoadData();
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message);
-                Close();       // тк вызыв в этом классе (mainWindow) - то this можно убрать
+                Close();       // тк вызыв в MainWindow - то this.Close() упрощаем
             }
 
 
             dgToDoList.ItemsSource = _toDoDataList;
+            //подписка на метод, который 
             _toDoDataList.ListChanged += _toDoDataList_ListChanged;
         }
 
 
+        // Сохраняет данные на жесткий, когда что-то обновилось
+        // sender и _toDoDataList ссылаются на один и тот же объект в куче.
         private void _toDoDataList_ListChanged(object sender, ListChangedEventArgs e)
         {
+            //чтобы метод понимал что что-то изменилось (в тексте, например) - надо реализовать INotifyPropertyChanged, подключенный в ToDoModel
+
             if (e.ListChangedType == ListChangedType.ItemAdded || 
                 e.ListChangedType == ListChangedType.ItemChanged || 
                 e.ListChangedType == ListChangedType.ItemDeleted)
